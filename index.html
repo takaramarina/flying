@@ -1,0 +1,44 @@
+<head>
+  <meta charset="utf-8">
+  <title>Flying Bird</title>
+  <style>
+    body {
+			background: radial-gradient(circle, rgb(163, 89, 82) 20%, rgb(2, 0, 0) 70%);
+    }
+  </style>
+</head>
+<body></body>
+<script>
+  const xOffset = 47
+  const yOffset = 40
+
+  function createGif (x, y) {
+    const gif = document.createElement('img')
+    gif.src = 'flyin.gif' + '#' + Math.random()
+    document.body.appendChild(gif)
+    gif.style.position = 'absolute'
+    gif.style.top = y + 'px'
+    gif.style.left = x + 'px'
+  }
+  
+  function summon (num, scale, radius) {
+    for (let i = 0; i < num; i++) {
+      const cx = window.innerWidth / 2 - xOffset
+    	const cy = window.innerHeight / 2 - yOffset
+      const x = Math.cos(i * scale) * radius + cx
+      const y = Math.sin(i * scale) * radius + cy
+    	createGif(x, y)
+    }
+  }
+  
+  function setup() {
+    // document.body.style.backgroundColor = '#ffceb4'
+  	document.body.style.overflow = 'hidden'
+    summon(50, 0.59, 100)
+    setTimeout(summon, 1000, 50, 0.5, 200)
+    setTimeout(summon, 2000, 100, 0.5, 300)
+  }
+  
+  window.addEventListener('load', setup)
+  
+</script>
